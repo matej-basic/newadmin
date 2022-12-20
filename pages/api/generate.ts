@@ -19,7 +19,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         var office_services_abs = []
         var creative_services_abs = []
 
-        const response = await fetch('http://localhost:3000/api/quantify', {
+        const response = await fetch('https://adminon-demand.vercel.app/api/quantify', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

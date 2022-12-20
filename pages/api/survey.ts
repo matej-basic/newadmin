@@ -21,7 +21,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
         console.log("Recevied request at /api/survey")
 
-        const response = await fetch('http://localhost:3000/api/checkvalid', {
+        const response = await fetch('https://adminon-demand.vercel.app/checkvalid', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -32,7 +32,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         const valid = response.status
         if (valid == 200) {
 
-            const generate_response = await fetch('http://localhost:3000/api/generate', {
+            const generate_response = await fetch('https://adminon-demand.vercel.app/api/generate', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
