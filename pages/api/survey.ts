@@ -21,7 +21,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
         console.log("Recevied request at /api/survey")
 
-        const response = await fetch('https://adminon-demand.vercel.app/checkvalid', {
+        const response = await fetch('https://adminon-demand.vercel.app/api/checkvalid', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
