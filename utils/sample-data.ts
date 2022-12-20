@@ -9,14 +9,6 @@ export const sampleUserData: User[] = [
   { id: 104, name: 'Dave' },
 ]
 
-export var http_host;
-
-if (process.env.ENVIRONMENT == "dev") {
-  http_host = "http://localhost:3000"
-} else if (process.env.ENVIRONMENT == "prod") {
-  http_host = "https://adminon-demand.vercel.app"
-}
-
 export const surveyQuestions: SurveyProps = {
   questions: [{
     text: "What is the size of your company",

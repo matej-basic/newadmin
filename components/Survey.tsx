@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { SurveyProps } from '../interfaces/survey';
 import Element from './Recommendation';
 import Recommendation from '../interfaces/recommendation';
-import { http_host } from '../utils/sample-data';
 
 const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
     const [answers, setAnswers] = useState<string[]>([]);
@@ -24,7 +23,7 @@ const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
         event.preventDefault();
 
         const submitToSurvey = async () => {
-            const response = await fetch(`${http_host}/api/survey`, {
+            const response = await fetch(`${process.env.HTTP_HOST}/api/survey`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -61,7 +60,7 @@ const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
         })
     };
 
-    console.log("ENV" + http_host)
+    console.log("ENV" + process.env.HTTP_HOST)
 
     return (
         <form className="w-full max-w-lg" onSubmit={handleSubmit}>
