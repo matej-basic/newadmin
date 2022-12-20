@@ -61,6 +61,8 @@ const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
         })
     };
 
+    console.log("ENV" + http_host)
+
     return (
         <form className="w-full max-w-lg" onSubmit={handleSubmit}>
             <div className="mb-4 flex items-center">
