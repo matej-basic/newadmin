@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SurveyProps } from '../interfaces/survey';
 import Element from './Recommendation';
 import Recommendation from '../interfaces/recommendation';
+import { http_host } from '../utils/sample-data';
 
 const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
     const [answers, setAnswers] = useState<string[]>([]);
@@ -23,7 +24,7 @@ const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
         event.preventDefault();
 
         const submitToSurvey = async () => {
-            const response = await fetch('https://adminon-demand.vercel.app/api/survey', {
+            const response = await fetch(`${http_host}/api/survey`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
