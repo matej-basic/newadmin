@@ -23,7 +23,7 @@ const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
         event.preventDefault();
 
         const submitToSurvey = async () => {
-            const response = await fetch('/api/survey', {
+            const response = await fetch('https://adminon-demand.vercel.app/api/survey', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
