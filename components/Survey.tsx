@@ -23,7 +23,7 @@ const Survey: React.FC<SurveyProps> = ({ questions, onSubmit }) => {
         event.preventDefault();
 
         const submitToSurvey = async () => {
-            const response = await fetch(`${process.env.HTTP_HOST}/api/survey`, {
+            const response = await fetch('/api/survey', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
