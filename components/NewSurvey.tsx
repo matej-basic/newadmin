@@ -154,12 +154,12 @@ const Survey = () => {
         );
     } else if (questions.length > 0 && currentPage == 0) {
         return (
-            <div className="bg-gray-200 rounded-lg w-1/5 max-w-lg mx-auto mt-8 p-4 text-left">
+            <div className="bg-gray-200 rounded-lg column w-1/5 max-w-lg mx-auto mt-8 p-4 text-left">
                 <h1 className="mb-4 font-bold text-2xl text-center">{currentQuestion.text}</h1>
-                <div className="column">
-                    <input className='ml-10 text-center rounded-full' type="text" name="Name" onChange={(e) => handleAnswer(e.target.value)} />
-                    <div className="mt-6 flex justify-between">
-                        <input onClick={handleSubmit} value="Submit" type="button" className='font-bold text-lg px-4 py-2 rounded-full bg-blue-500 text-white text-center mx-auto bottom-0' />
+                <div className="flex flex-col justify-center items-center">
+                    <input className='flex text-center rounded-full' type="text" name="Name" onChange={(e) => handleAnswer(e.target.value)} />
+                    <div className="mt-6 flex justify-between text-center">
+                        <input onClick={handleSubmit} value="Submit" type="button" className='font-bold text-lg px-4 py-2 rounded-full bg-blue-500 text-white text-center mx-auto bottom-0 ' />
                     </div>
                 </div>
             </div>
