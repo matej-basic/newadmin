@@ -28,7 +28,6 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         });
 
         const valid = response.status
-        console.log("Valid: " + valid)
         if (valid == 200) {
 
             const generate_response = await fetch(`${process.env.HTTP_HOST}/api/generate`, {

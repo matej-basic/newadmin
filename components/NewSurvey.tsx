@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Question } from '../interfaces/survey';
+import Element from './Recommendation';
 
 const Survey = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [answers, setAnswers] = useState([]);
     const [selectedAnswer, setSelectedAnswer] = useState()
     const [questions, setQuestions] = useState<Question[]>([])
+    const [recommendations, setRecommendations] = useState([])
+    var renderedRecommendations;
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -45,6 +48,28 @@ const Survey = () => {
         setCurrentPage(currentPage - 1);
     };
 
+    const updateRecommendations = (values) => {
+        var rcmds = []
+        values.forEach(value => {
+            const newRecom = {
+                name: value.name,
+                price: value.price,
+                url: value.url
+            }
+            rcmds.push(newRecom)
+        });
+
+        renderedRecommendations = Object.values(rcmds).map(rcm => {
+            return (
+                <Element name={rcm.name} url={rcm.url} price={rcm.price} />
+            )
+        })
+
+        setRecommendations(rcmds)
+        console.log("Value of recommendations: " + JSON.stringify(recommendations))
+        console.log("Value of renderedrecommendations: " + JSON.stringify(renderedRecommendations))
+    }
+
     const handleSubmit = () => {
         // Submit answers to server or save to local storage
         if (currentPage + 1 == questions.length) {
@@ -65,7 +90,8 @@ const Survey = () => {
 
                 const res = await posting.json()
                 const recommendation = res['recommendation']
-                console.log("Recommendation: " + JSON.stringify(recommendation))
+                updateRecommendations(recommendation)
+                setCurrentPage(currentPage + 1);
             }
 
             postQuestions().catch(err => { console.log("Error posting questions: " + err) })
@@ -76,8 +102,16 @@ const Survey = () => {
         }
     };
 
+    if (recommendations.length > 0) {
+        renderedRecommendations = Object.values(recommendations).map(rcm => {
+            return (
+                <Element name={rcm.name} url={rcm.url} price={rcm.price} />
+            )
+        })
+    }
+
     const currentQuestion = questions[currentPage];
-    if (questions.length > 0 && currentPage > 0) {
+    if (questions.length > 0 && currentPage > 0 && currentPage <= questions.length - 1) {
         return (
             <div className="bg-gray-200 rounded-lg w-1/5 max-w-lg mx-auto mt-8 p-4 text-left">
                 <h1 className="mb-4 font-bold text-2xl text-center">{currentQuestion.text}</h1>
@@ -114,6 +148,7 @@ const Survey = () => {
                             </button>
                         )}
                     </div>
+
                 </div>
             </div>
         );
@@ -122,14 +157,26 @@ const Survey = () => {
             <div className="bg-gray-200 rounded-lg w-1/5 max-w-lg mx-auto mt-8 p-4 text-left">
                 <h1 className="mb-4 font-bold text-2xl text-center">{currentQuestion.text}</h1>
                 <div className="column">
-                    <form onSubmit={handleSubmit}>
-                        <input className='ml-10 text-center rounded-full' type="text" name="Name" onChange={(e) => handleAnswer(e.target.value)} />
-                        <div className="mt-6 flex justify-between">
-                            <input onClick={handleSubmit} value="Submit" type="button" className='font-bold text-lg px-4 py-2 rounded-full bg-blue-500 text-white text-center mx-auto bottom-0' />
-                        </div>
-                    </form>
+                    <input className='ml-10 text-center rounded-full' type="text" name="Name" onChange={(e) => handleAnswer(e.target.value)} />
+                    <div className="mt-6 flex justify-between">
+                        <input onClick={handleSubmit} value="Submit" type="button" className='font-bold text-lg px-4 py-2 rounded-full bg-blue-500 text-white text-center mx-auto bottom-0' />
+                    </div>
                 </div>
             </div>
+        )
+    } else {
+        return (
+            <div className="rounded-lg w-1/3 max-w-lg mx-auto mt-8 p-4 text-left">
+                <div className="w-1/2 pl-4">
+                    <h1 className="mb-4 pl-16 ml-12 font-bold text-2xl text-center">Recommendations</h1>
+                    <div className='column'>
+                        <div className="mb-4 flex items-right float-left">
+                            {renderedRecommendations}
+                        </div>
+                    </div>
+                </div>
+            </div >
+
         )
     }
 
