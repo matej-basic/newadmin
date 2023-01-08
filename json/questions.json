@@ -1,0 +1,43 @@
+{
+    "questions": [
+        {
+            "text": "What is the size of your company?",
+            "choices": [
+                "1-5",
+                "6-50",
+                "51-250",
+                ">250"
+            ]
+        },
+        {
+            "text": "How many people do you have working in accounting?",
+            "choices": [
+                "0",
+                "1-5",
+                "6-50",
+                "51-250",
+                ">250"
+            ]
+        },
+        {
+            "text": "How many people do you have working in creative?",
+            "choices": [
+                "0",
+                "1-5",
+                "6-50",
+                "51-250",
+                ">250"
+            ]
+        },
+        {
+            "text": "How many people do you have working in IT?",
+            "choices": [
+                "0",
+                "1-5",
+                "6-50",
+                "51-250",
+                ">250"
+            ]
+        }
+    ]
+}

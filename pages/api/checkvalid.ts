@@ -6,7 +6,6 @@ const handler = (_req: NextApiRequest, res: NextApiResponse) => {
     const { method, body } = _req;
 
     const answer: Answer = body
-    console.log("Recevied request at /api/checkvalid")
 
     const SumIndexes = (answer: Answer) => {
         const acc = accounting_sizes.indexOf(answer.accounting_size)

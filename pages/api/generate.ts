@@ -12,9 +12,6 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     const fileContents = await fs.readFile(jsonDirectory + '/services.json', 'utf-8');
     const file_json = JSON.parse(fileContents)
 
-
-    console.log("Recevied request at /api/generate")
-
     const GetClosesValue = async (answer: Answer) => {
         var office_services_abs = []
         var creative_services_abs = []
