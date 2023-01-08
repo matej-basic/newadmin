@@ -19,8 +19,6 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
             it_size: it
         }
 
-        console.log("Recevied request at /api/survey")
-
         const response = await fetch(`${process.env.HTTP_HOST}/api/checkvalid`, {
             method: "POST",
             headers: {
@@ -30,6 +28,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         });
 
         const valid = response.status
+        console.log("Valid: " + valid)
         if (valid == 200) {
 
             const generate_response = await fetch(`${process.env.HTTP_HOST}/api/generate`, {

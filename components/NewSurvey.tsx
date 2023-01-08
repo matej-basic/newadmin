@@ -50,6 +50,25 @@ const Survey = () => {
         if (currentPage + 1 == questions.length) {
             // Submit to backend
             console.log("Answers: " + JSON.stringify(answers))
+            const postQuestions = async () => {
+                const newAnswer = {
+                    name: answers[0],
+                    answers: answers.slice(1)
+                }
+                const posting = await fetch('/api/survey', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newAnswer)
+                })
+
+                const res = await posting.json()
+                const recommendation = res['recommendation']
+                console.log("Recommendation: " + JSON.stringify(recommendation))
+            }
+
+            postQuestions().catch(err => { console.log("Error posting questions: " + err) })
 
         } else {
             setCurrentPage(currentPage + 1);

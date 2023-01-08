@@ -1,14 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Answer } from '../../interfaces/answer';
-import { company_sizes, creative_sizes, accounting_sizes, it_sizes } from "../../utils/sample-data";
+import { company_sizes, creative_sizes, accounting_sizes, it_sizes } from "../../utils/sample-data"
 
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
     const { method, body } = _req;
 
     const answer: Answer = body;
-
-    console.log("Recevied request at /api/quantify")
 
     const QuantifyAnswer = (answer: Answer) => {
         const com = company_sizes.indexOf(answer.company_size) + 1
