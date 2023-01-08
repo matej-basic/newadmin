@@ -50,6 +50,7 @@ const Survey = () => {
         if (currentPage + 1 == questions.length) {
             // Submit to backend
             console.log("Answers: " + JSON.stringify(answers))
+
         } else {
             setCurrentPage(currentPage + 1);
             setSelectedAnswer(null);
@@ -104,6 +105,9 @@ const Survey = () => {
                 <div className="column">
                     <form onSubmit={handleSubmit}>
                         <input className='ml-10 text-center rounded-full' type="text" name="Name" onChange={(e) => handleAnswer(e.target.value)} />
+                        <div className="mt-6 flex justify-between">
+                            <input onClick={handleSubmit} value="Submit" type="button" className='font-bold text-lg px-4 py-2 rounded-full bg-blue-500 text-white text-center mx-auto bottom-0' />
+                        </div>
                     </form>
                 </div>
             </div>
