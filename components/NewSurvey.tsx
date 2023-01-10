@@ -8,7 +8,9 @@ const Survey = () => {
     const [selectedAnswer, setSelectedAnswer] = useState()
     const [questions, setQuestions] = useState<Question[]>([])
     const [recommendations, setRecommendations] = useState([])
-    var renderedRecommendations;
+    var renderedRecommendationsOffice;
+    var renderedRecommendationsCreative;
+    var renderedRecommendationsCompute;
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -59,15 +61,7 @@ const Survey = () => {
             rcmds.push(newRecom)
         });
 
-        renderedRecommendations = Object.values(rcmds).map(rcm => {
-            return (
-                <Element name={rcm.name} url={rcm.url} price={rcm.price} />
-            )
-        })
-
         setRecommendations(rcmds)
-        console.log("Value of recommendations: " + JSON.stringify(recommendations))
-        console.log("Value of renderedrecommendations: " + JSON.stringify(renderedRecommendations))
     }
 
     const handleSubmit = () => {
@@ -103,11 +97,27 @@ const Survey = () => {
     };
 
     if (recommendations.length > 0) {
-        renderedRecommendations = Object.values(recommendations).map(rcm => {
+        renderedRecommendationsOffice = Object.values(recommendations.slice(0, 3)).map(rcm => {
             return (
                 <Element name={rcm.name} url={rcm.url} price={rcm.price} />
             )
         })
+
+        if (answers.length > 0 && answers[3] != "0") {
+            renderedRecommendationsCreative = Object.values(recommendations.slice(3, 6)).map(rcm => {
+                return (
+                    <Element name={rcm.name} url={rcm.url} price={rcm.price} />
+                )
+            })
+        }
+
+        if (answers.length > 0 && answers[5] != "I don't require a virtual computer") {
+            renderedRecommendationsCompute = Object.values(recommendations.slice(-3)).map(rcm => {
+                return (
+                    <Element name={rcm.name} url={rcm.url} price={rcm.price} />
+                )
+            })
+        }
     }
 
     const currentQuestion = questions[currentPage];
@@ -167,11 +177,24 @@ const Survey = () => {
     } else {
         return (
             <div className="rounded-lg w-1/3 max-w-lg mx-auto mt-8 p-4 text-left">
-                <div className="w-1/2 pl-4">
-                    <h1 className="mb-4 pl-16 ml-12 font-bold text-2xl text-center">Recommendations</h1>
+                <div className="pl-4">
+                    <h1 className="mb-4 font-bold text-2xl text-center">Recommendations</h1>
                     <div className='column'>
+                        <h2 className='font-bold text-2x1 text-center'>Office packages</h2>
                         <div className="mb-4 flex items-right float-left">
-                            {renderedRecommendations}
+                            {renderedRecommendationsOffice}
+                        </div>
+                    </div>
+                    <div className='column'>
+                        {answers[3] != "0" && <h2 className='font-bold text-2x1 text-center'>Creative packages</h2>}
+                        <div className="mb-4 flex items-right float-left">
+                            {renderedRecommendationsCreative}
+                        </div>
+                    </div>
+                    <div className='column'>
+                        {answers[5] != "I don't require a virtual computer" && <h2 className='font-bold text-2x1 text-center'>Compute packages</h2>}
+                        <div className="mb-4 flex items-right float-left">
+                            {renderedRecommendationsCompute}
                         </div>
                     </div>
                 </div>

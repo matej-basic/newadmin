@@ -9,6 +9,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     const accounting = answers[1]
     const creative = answers[2]
     const it = answers[3]
+    const vm = answers[4]
 
     if (method === "POST") {
         const ans: Answer = {
@@ -16,7 +17,8 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
             company_size: company_size,
             accounting_size: accounting,
             creative_size: creative,
-            it_size: it
+            it_size: it,
+            vm_size: vm
         }
 
         const response = await fetch(`${process.env.HTTP_HOST}/api/checkvalid`, {

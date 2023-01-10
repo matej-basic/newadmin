@@ -15,6 +15,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     const GetClosesValue = async (answer: Answer) => {
         var office_services_abs = []
         var creative_services_abs = []
+        var compute_services_abs = []
 
         const response = await fetch(`${process.env.HTTP_HOST}/api/quantify`, {
             method: "POST",
@@ -46,11 +47,22 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
                 }
                 creative_services_abs.push(svc)
             }
+
+            if (answer.vm_size != "I don't require a virtual computer" && service['category'] == "virtualm") {
+                var svc = {
+                    name: service['name'],
+                    url: service['url'],
+                    price: service['price'],
+                    abs: Math.abs(value - parseInt(service['value']))
+                }
+                compute_services_abs.push(svc)
+            }
         });
 
         var sorted_offices_services = office_services_abs.sort((a, b) => a.abs - b.abs)
         var sorted_creative_services = creative_services_abs.sort((a, b) => a.abs - b.abs)
-        var sorted_services = sorted_offices_services.slice(0, 3).concat(sorted_creative_services.slice(0, 3))
+        var sorted_viurtualm_services = compute_services_abs.sort((a, b) => a.abs - b.abs)
+        var sorted_services = sorted_offices_services.slice(0, 3).concat(sorted_creative_services.slice(0, 3)).concat(sorted_viurtualm_services.slice(0, 3))
 
         return sorted_services
     }

@@ -41,6 +41,16 @@
                 "51 - 250",
                 ">250"
             ]
+        },
+        {
+            "text": "For what purpose do you require a virtual computer for?",
+            "choices": [
+                "I don't require a virtual computer",
+                "Just sending emails and browsing the web",
+                "Photo editing",
+                "Photo and video editing",
+                "Running complex workloads such as application servers"
+            ]
         }
     ]
 }
