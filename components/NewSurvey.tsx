@@ -186,13 +186,13 @@ const Survey = () => {
                         </div>
                     </div>
                     <div className='column'>
-                        {answers[3] != "0" && <h2 className='font-bold text-2x1 text-center'>Creative packages</h2>}
+                        {answers[2] != "0" && <h2 className='font-bold text-2x1 text-center'>Creative packages</h2>}
                         <div className="mb-4 flex items-right float-left">
                             {renderedRecommendationsCreative}
                         </div>
                     </div>
                     <div className='column'>
-                        {answers[5] != "I don't require a virtual computer" && <h2 className='font-bold text-2x1 text-center'>Compute packages</h2>}
+                        {answers[4] != "I don't require a virtual computer" && <h2 className='font-bold text-2x1 text-center'>Compute packages</h2>}
                         <div className="mb-4 flex items-right float-left">
                             {renderedRecommendationsCompute}
                         </div>
