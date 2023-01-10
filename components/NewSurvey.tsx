@@ -103,7 +103,7 @@ const Survey = () => {
             )
         })
 
-        if (answers.length > 0 && answers[3] != "0") {
+        if (answers.length > 0 && answers[2] != "0") {
             renderedRecommendationsCreative = Object.values(recommendations.slice(3, 6)).map(rcm => {
                 return (
                     <Element name={rcm.name} url={rcm.url} price={rcm.price} />
@@ -111,7 +111,7 @@ const Survey = () => {
             })
         }
 
-        if (answers.length > 0 && answers[5] != "I don't require a virtual computer") {
+        if (answers.length > 0 && answers[4] != "I don't require a virtual computer") {
             renderedRecommendationsCompute = Object.values(recommendations.slice(-3)).map(rcm => {
                 return (
                     <Element name={rcm.name} url={rcm.url} price={rcm.price} />
