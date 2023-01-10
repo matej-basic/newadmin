@@ -43,7 +43,6 @@ const Survey = () => {
     }, [])
 
     const handleAnswer = (answer) => {
-        console.log("New answer: " + answer)
         setSelectedAnswer(answer)
         setAnswers([...answers, answer]);
     };
@@ -70,7 +69,6 @@ const Survey = () => {
         // Submit answers to server or save to local storage
         if (currentPage + 1 == questions.length) {
             // Submit to backend
-            console.log("Answers: " + JSON.stringify(answers))
             const postQuestions = async () => {
                 const newAnswer = {
                     name: name,
