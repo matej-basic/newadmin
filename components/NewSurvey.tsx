@@ -123,7 +123,7 @@ const Survey = () => {
     const currentQuestion = questions[currentPage];
     if (questions.length > 0 && currentPage > 0 && currentPage <= questions.length - 1) {
         return (
-            <div className="bg-gray-200 rounded-lg w-1/5 max-w-lg mx-auto mt-8 p-4 text-left">
+            <div className="bg-gray-200 rounded-lg w-full max-w-lg mx-auto mt-8 p-4 text-left">
                 <h1 className="mb-4 font-bold text-2xl text-center">{currentQuestion.text}</h1>
                 <div className="column">
                     {currentQuestion.choices.map((choice) => (
@@ -164,7 +164,7 @@ const Survey = () => {
         );
     } else if (questions.length > 0 && currentPage == 0) {
         return (
-            <div className="bg-gray-200 rounded-lg column w-1/5 max-w-lg mx-auto mt-8 p-4 text-left">
+            <div className="bg-gray-200 rounded-lg column w-full max-w-lg mx-auto mt-8 p-4 text-left">
                 <h1 className="mb-4 font-bold text-2xl text-center">{currentQuestion.text}</h1>
                 <div className="flex flex-col justify-center items-center">
                     <input className='flex text-center rounded-full' type="text" name="Name" onChange={(e) => setName(e.target.value)} />
@@ -176,7 +176,7 @@ const Survey = () => {
         )
     } else {
         return (
-            <div className="rounded-lg w-1/3 max-w-lg mx-auto mt-8 p-4 text-left">
+            <div className="rounded-lg w-full max-w-lg mx-auto mt-8 p-4 text-left">
                 <div className="pl-4">
                     <h1 className="mb-4 font-bold text-2xl text-center">Recommendations</h1>
                     <div className='column'>

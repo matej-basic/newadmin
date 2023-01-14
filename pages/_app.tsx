@@ -9,7 +9,7 @@ const IndexPage = () => {
 
     return (
         <Layout title="AdminOn Demand">
-            <h1 className="text-3xl font-bold text-center">AdminOn Demand</h1>
+            <h1 className="text-3xl font-bold text-center">CloudWizard</h1>
             <Survey />
         </Layout>
     )
